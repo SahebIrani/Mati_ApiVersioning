@@ -1,9 +1,9 @@
 using Mati_ApiVersioning;
+using Mati_ApiVersioning.Controllers;
 
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
-using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.AspNetCore.Mvc.Versioning.Conventions;
 using Microsoft.Extensions.DependencyInjection.Extensions;
@@ -35,12 +35,12 @@ builder.Services.AddApiVersioning(options =>
     //   new HeaderApiVersionReader("X-Version"),
     //   new MediaTypeApiVersionReader("ver"));
 
-    //options.Conventions.Controller<HelloWorldController>()
-    ////.HasDeprecatedApiVersion(new ApiVersion(1,0))
-    ////.Action(c => c.Get()).MapToApiVersion(new ApiVersion(2, 0))
-    ////.HasApiVersion(new ApiVersion(2, 0))
-    //    .IsApiVersionNeutral()
-    //;
+    options.Conventions.Controller<HelloWorldController>()
+    //.HasDeprecatedApiVersion(new ApiVersion(1,0))
+    //.Action(c => c.Get()).MapToApiVersion(new ApiVersion(2, 0))
+    //.HasApiVersion(new ApiVersion(2, 0))
+        .IsApiVersionNeutral()
+    ;
 
     options.Conventions.Add(new VersionByNamespaceConvention());
 
@@ -56,7 +56,7 @@ builder.Services.AddVersionedApiExplorer(setup =>
 builder.Services.ConfigureOptions<ConfigureSwaggerOptions>();
 
 // removing the default api version policy        
-builder.Services.Remove(builder.Services.Single(s => s.ImplementationType == typeof(DefaultApiVersionRoutePolicy)));
+//builder.Services.Remove(builder.Services.Single(s => s.ImplementationType == typeof(DefaultApiVersionRoutePolicy)));
 //builder.Services.TryAddEnumerable(ServiceDescriptor.Singleton<MatcherPolicy, DatedApiVersionMatcherPolicy>());
 //builder.Services.AddSingleton<IDatedApiVersionResolver, DatedApiVersionResolver>();
 

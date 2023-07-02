@@ -27,7 +27,9 @@ public class MyApiControllerFilter : IApiControllerFilter
             controllers.Where(_ => _.ControllerName != "HelloWorld")
             .ToList()
         ;
-        return result;
+        //return result;
+
+        return controllers;
     }
 }
 
